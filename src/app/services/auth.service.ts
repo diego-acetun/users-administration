@@ -9,7 +9,7 @@ import { login } from '../interfaces/login.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersService {
+export class AuthService {
   private url = 'https://crud-user.vercel.app/api/v1';
   public page = 1;
   httpOptions = {
@@ -18,16 +18,28 @@ export class UsersService {
       // 'Access-Control-Allow-Origin': '*',
     }),
   };
-
   constructor(private http: HttpClient, private router: Router) {}
 
-  getUsers(): Observable<user[]> {
+  isAuthenticated(): boolean {
+    // * true si tiene sesion activa
+    return localStorage.getItem('user') !== null;
+  }
+
+  logOut() {
+    if (localStorage.getItem('user')) localStorage.removeItem('user');
+  }
+  login(credentials: login): Observable<user> {
     return this.http
-      .get<any>(`${this.url}/users?page=${this.page}&limit=50`)
+      .post<user>(`${this.url}/login`, credentials, this.httpOptions)
       .pipe(
-        map((users) => users.rows),
-        tap((_) => console.log('users', _)),
-        catchError(this.handleError<any>('getUsuarios', []))
+        tap((user) => {
+          // this.toastr.success('Iniciando sesion');
+          // this.router.navigate([`/users`]);
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate([`/users`]);
+          // console.log('loginzkazja:', user);
+        }),
+        catchError(this.handleError<any>('loginError', []))
       );
   }
 

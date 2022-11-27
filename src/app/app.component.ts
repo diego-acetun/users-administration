@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from './services/users.service';
+import { AuthService } from './services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,10 +17,11 @@ export class AppComponent {
   public logOutDetails = { title: 'Logout', url: '/login', icon: 'trash' };
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(private usersService: UsersService) {}
+  constructor(private authService: AuthService) {}
 
   logOut() {
-    this.usersService.logOut();
+
+    this.authService.logOut();
     // console.log('clicked');
   }
 }

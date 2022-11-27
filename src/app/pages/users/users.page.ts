@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
 @Component({
@@ -10,7 +11,11 @@ import { user } from 'src/app/interfaces/user.interface';
 export class UsersPage implements OnInit {
   users!: user[];
   reqData = false;
-  constructor(private usersService: UsersService, private router: Router) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.verifySesion();
@@ -20,13 +25,13 @@ export class UsersPage implements OnInit {
   }
 
   verifySesion() {
-    if (this.usersService.verifySesion()) {
-      this.usersService.getUsers().subscribe((users) => {
-        this.users = users;
-        this.reqData = true;
-      });
-    } else {
+    // if (this.authService.verifySesion()) {
+    this.usersService.getUsers().subscribe((users) => {
+      this.users = users;
+      this.reqData = true;
+    });
+    /* } else {
       this.router.navigate([`/login`]);
-    }
+    } */
   }
 }

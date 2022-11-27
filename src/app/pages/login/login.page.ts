@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/services/users.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { login } from 'src/app/interfaces/login.interface';
 @Component({
@@ -10,14 +10,15 @@ import { login } from 'src/app/interfaces/login.interface';
 export class LoginPage implements OnInit {
   username: string = '';
   password: string = '';
-  constructor(private usersService: UsersService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if (this.usersService.verifySesion()) this.router.navigate([`/users`]);
+    console.log('locla', localStorage.getItem('user'));
+    // if (this.authService.verifySesion()) this.router.navigate([`/users`]);
   }
 
   ionViewWillEnter() {
-    if (this.usersService.verifySesion()) this.router.navigate([`/users`]);
+    // if (this.authService.verifySesion()) this.router.navigate([`/users`]);
   }
 
   click(): void {
@@ -26,6 +27,6 @@ export class LoginPage implements OnInit {
       username: this.username,
       password: this.password,
     };
-    this.usersService.login(credentials).subscribe((user) => {});
+    this.authService.login(credentials).subscribe((user) => {});
   }
 }
