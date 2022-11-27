@@ -22,6 +22,5 @@ export class AppComponent {
   logOut() {
 
     this.authService.logOut();
-    // console.log('clicked');
   }
 }
