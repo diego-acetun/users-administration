@@ -21,7 +21,9 @@
       <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:cursor-pointer"
         *ngFor="let user of users" (click)="redirect(user.id)">
         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          <img src="{{user.image}}" alt="No disponible" class="max-h-10">
+          <ion-avatar>
+            <img src="{{user.image}}" alt="No disponible" class="max-h-20">
+          </ion-avatar>
         </th>
         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {{user.name}}

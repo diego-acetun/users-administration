@@ -9,17 +9,17 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   public appPages = [
-    { title: 'users', url: '/users', icon: 'mail' },
-    { title: 'Create User', url: '/users/create-user', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
+    { title: 'users', url: '/users', icon: 'person-outline' },
+    { title: 'Create User', url: '/users/create-user', icon: 'person-add-outline' },
   ];
-  public logOutDetails = { title: 'Logout', url: '/login', icon: 'trash' };
+  public logOutDetails = { title: 'Logout', url: '/login', icon: 'log-out-outline' };
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   isAuthenticated: boolean = false;
   pp!: string;
   constructor(private authService: AuthService) {
-    this.authService.getAuth().subscribe((s) => (this.pp = s));
+    this.authService
+      .getAuth()
+      .subscribe((user) => (this.isAuthenticated = user !== '{}'));
     // this.pp.subscribe((_) => {
     //   console.log('pp', _);
     // });

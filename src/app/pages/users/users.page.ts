@@ -22,11 +22,9 @@ export class UsersPage implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    // console.log("init");
     this.getUsers();
   }
   ionViewWillEnter() {
-    // console.log("will enter");
     this.getUsers();
   }
 

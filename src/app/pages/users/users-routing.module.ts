@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./create-user/create-user.module').then( m => m.CreateUserPageModule)
   },
   {
-    path: 'update-user',
+    path: 'update-user/:id',
     loadChildren: () => import('./update-user/update-user.module').then( m => m.UpdateUserPageModule)
   },
 ];

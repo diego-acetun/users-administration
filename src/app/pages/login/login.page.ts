@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
       password: this.password,
     };
     this.authService.login(credentials).subscribe((user) => {
-      this.authService.setAuth(user);
+      console.log('user prueba', user);
     });
   }
 }

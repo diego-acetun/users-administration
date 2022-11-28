@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 
 import { user } from '../interfaces/user.interface';
 import { login } from '../interfaces/login.interface';
+// import { AlertController } from '@ionic/angular';
+import { AlertsService } from './alerts.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,16 +22,21 @@ export class AuthService {
       // 'Access-Control-Allow-Origin': '*',
     }),
   };
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private alertsService: AlertsService
+  ) {
     const session: string = localStorage.getItem('user') || '{}';
     this.authSubject = new BehaviorSubject<string>(session);
   }
+
   setAuth(auth: user) {
     localStorage.setItem('user', JSON.stringify(auth));
     this.authSubject.next(JSON.stringify(auth));
   }
   getAuth() {
-    console.log('jj', typeof this.authSubject.value);
+    // console.log('jj', typeof this.authSubject.value);
     return this.authSubject.asObservable();
   }
 
@@ -47,13 +54,23 @@ export class AuthService {
       .post<user>(`${this.url}/login`, credentials, this.httpOptions)
       .pipe(
         tap((user) => {
-          // localStorage.setItem('user', JSON.stringify(user));
+          this.setAuth(user);
           this.router.navigate([`/users`]);
         }),
         catchError(this.handleError<any>('loginError', []))
       );
   }
 
+  // async invalidCredentials() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Login',
+  //     subHeader: 'Credenciales incorrectas',
+  //     message: 'Intentar de nuevo',
+  //     buttons: ['OK'],
+  //   });
+
+  //   await alert.present();
+  // }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
@@ -62,7 +79,13 @@ export class AuthService {
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
       if (operation === 'loginError') {
-        console.log('credenciales incorrectas');
+        // console.log('credenciales incorrectas');
+        // this.invalidCredentials();
+        this.alertsService.presentAlert(
+          'Login',
+          'Credenciales incorrectas',
+          'Intentar de nuevo'
+        );
       }
 
       // Let the app keep running by returning an empty result.
