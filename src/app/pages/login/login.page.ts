@@ -13,8 +13,6 @@ export class LoginPage implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    console.log('locla', localStorage.getItem('user'));
-    // if (this.authService.verifySesion()) this.router.navigate([`/users`]);
   }
 
   ionViewWillEnter() {

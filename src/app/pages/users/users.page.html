@@ -3,12 +3,13 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>users</ion-title>
+    <ion-title class="text-red-500">users</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid *ngIf="reqData!==false; else loading">
+  <app-table [users]="users" *ngIf="reqData!==false; else loading"></app-table>
+  <!-- <ion-grid *ngIf="reqData!==false; else loading">
     <ion-row class="ion-text-center">
       <ion-col>Image</ion-col>
       <ion-col>Name</ion-col>
@@ -26,7 +27,8 @@
         <ion-col>{{user.birthday}}</ion-col>
       </ion-row>
     </div>
-  </ion-grid>
+  </ion-grid> -->
+
   <ng-template #loading>
     <ion-text>cargando...</ion-text>
   </ng-template>

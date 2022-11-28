@@ -9,29 +9,32 @@ import { user } from 'src/app/interfaces/user.interface';
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage implements OnInit {
-  users!: user[];
+  users: user[] = [
+    {
+      id: '',
+      name: '',
+      birthday: '',
+      email: '',
+      image: '',
+    },
+  ];
   reqData = false;
-  constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.verifySesion();
+    console.log("init");
+    this.getUsers();
   }
-  ionViewWillEnter() {
-    this.verifySesion();
-  }
+  // ionViewWillEnter() {
+  //   console.log("will enter");
+  //   this.getUsers();
+  // }
 
-  verifySesion() {
-    // if (this.authService.verifySesion()) {
+  getUsers() {
     this.usersService.getUsers().subscribe((users) => {
+      // console.log("djejdejen");
       this.users = users;
       this.reqData = true;
     });
-    /* } else {
-      this.router.navigate([`/login`]);
-    } */
   }
 }

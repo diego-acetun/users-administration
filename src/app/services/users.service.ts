@@ -15,7 +15,6 @@ export class UsersService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Access-Control-Allow-Origin': '*',
     }),
   };
 
@@ -26,9 +25,17 @@ export class UsersService {
       .get<any>(`${this.url}/users?page=${this.page}&limit=50`)
       .pipe(
         map((users) => users.rows),
-        tap((_) => console.log('users', _)),
+        tap((users) => console.log('getUsers', users)),
         catchError(this.handleError<any>('getUsuarios', []))
       );
+  }
+
+  getUser(id: string): Observable<user> {
+    console.log(`prueba ${this.url}/users/${id}`);
+    return this.http.get<any>(`${this.url}/users/${id}`).pipe(
+      tap((user) => console.log('getUser', user)),
+      catchError(this.handleError<any>('getUsuario', []))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

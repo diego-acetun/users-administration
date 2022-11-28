@@ -33,11 +33,9 @@ export class AuthService {
       .post<user>(`${this.url}/login`, credentials, this.httpOptions)
       .pipe(
         tap((user) => {
-          // this.toastr.success('Iniciando sesion');
-          // this.router.navigate([`/users`]);
+          
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate([`/users`]);
-          // console.log('loginzkazja:', user);
         }),
         catchError(this.handleError<any>('loginError', []))
       );
