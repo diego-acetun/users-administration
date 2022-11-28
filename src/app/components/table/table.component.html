@@ -14,15 +14,12 @@
         <th class="py-3 px-6">
           Correo electrónico
         </th>
-        <th class="py-3 px-6">
-          Actions
-        </th>
       </tr>
     </thead>
 
     <tbody>
-      <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:cursor-pointer" *ngFor="let user of users"
-        (click)="redirect(user.id)">
+      <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:cursor-pointer"
+        *ngFor="let user of users" (click)="redirect(user.id)">
         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           <img src="{{user.image}}" alt="No disponible" class="max-h-10">
         </th>
@@ -34,11 +31,6 @@
         </td>
         <td class="py-4 px-6">
           {{user.email}}
-        </td>
-        <td class="py-4 px-6">
-          <a routerLink="/editar-user/{{ user.id }}"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-          <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer ml-5">Delete</a>
         </td>
       </tr>
 

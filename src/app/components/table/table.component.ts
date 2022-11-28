@@ -11,6 +11,6 @@ export class TableComponent {
   constructor(private router: Router) {}
 
   redirect(id: string) {
-    this.router.navigate([`users/${id}`]);
+    this.router.navigate([`users/user/${id}`]);
   }
 }

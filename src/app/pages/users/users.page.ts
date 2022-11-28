@@ -22,13 +22,13 @@ export class UsersPage implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    console.log("init");
+    // console.log("init");
     this.getUsers();
   }
-  // ionViewWillEnter() {
-  //   console.log("will enter");
-  //   this.getUsers();
-  // }
+  ionViewWillEnter() {
+    // console.log("will enter");
+    this.getUsers();
+  }
 
   getUsers() {
     this.usersService.getUsers().subscribe((users) => {

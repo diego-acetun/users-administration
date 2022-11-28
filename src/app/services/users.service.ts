@@ -11,7 +11,7 @@ import { login } from '../interfaces/login.interface';
 })
 export class UsersService {
   private url = 'https://crud-user.vercel.app/api/v1';
-  public page = 1;
+  public page = 11;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,6 +36,21 @@ export class UsersService {
       tap((user) => console.log('getUser', user)),
       catchError(this.handleError<any>('getUsuario', []))
     );
+  }
+
+  createUser(user: user): Observable<user> {
+    return this.http
+      .post<user>(`${this.url}/users`, user, this.httpOptions)
+      .pipe(
+        tap(
+          (newUser: user) => {
+            console.log(`SE creo el usuario ${newUser}`);
+            this.router.navigate([`/users`])
+          }
+          // this.toastr.success(`Se ha creado el user ${newUser.name}`)
+        ),
+        catchError(this.handleError<user>('createUserError'))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

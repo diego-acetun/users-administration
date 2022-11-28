@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="user">{{user.name}}</ion-title>
+    <ion-title *ngIf="user">
+      <ion-img src="{{user.image}}" alt="not available" class="w-12">
+      </ion-img>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="user" class="text-center">
+  <app-card [user]="user"></app-card>
+  <ion-button class="ion-margin-start">Update</ion-button>
+  <ion-button class="ion-margin-start" color="danger">Delete</ion-button>
 
+  <!-- <p class="mt-10"><span class="text-xl font-bold">Name:</span> <span class="text-xl font-bold">{{' '+user.name}}</span></p>
+  <p class="mt-10"><span class="text-xl font-bold">email:</span> <span class="text-xl font-bold">{{' '+user.name}}</span></p>
+  <p class="mt-10"><span class="text-xl font-bold">birthday:</span> <span class="text-xl font-bold">{{' '+user.name}}</span></p> -->
 </ion-content>

@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { UserPageRoutingModule } from './user-routing.module';
 
 import { UserPage } from './user.page';
-
+import { CardComponent } from 'src/app/components/card/card.component';
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, UserPageRoutingModule],
-  declarations: [UserPage],
+  declarations: [UserPage, CardComponent],
 })
 export class UserPageModule {}

@@ -9,9 +9,18 @@ const routes: Routes = [
     component: UsersPage,
   },
   {
-    path: ':id',
-    loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
-  }
+    path: 'user/:id',
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserPageModule),
+  },
+  {
+    path: 'create-user',
+    loadChildren: () => import('./create-user/create-user.module').then( m => m.CreateUserPageModule)
+  },
+  {
+    path: 'update-user',
+    loadChildren: () => import('./update-user/update-user.module').then( m => m.UpdateUserPageModule)
+  },
 ];
 
 @NgModule({
