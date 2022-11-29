@@ -12,10 +12,7 @@ export class LoginPage implements OnInit {
   password: string = '';
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-    console.log('locla', localStorage.getItem('user'));
-    // if (this.authService.verifySesion()) this.router.navigate([`/users`]);
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
     // if (this.authService.verifySesion()) this.router.navigate([`/users`]);
@@ -27,6 +24,8 @@ export class LoginPage implements OnInit {
       username: this.username,
       password: this.password,
     };
-    this.authService.login(credentials).subscribe((user) => {});
+    this.authService.login(credentials).subscribe((user) => {
+      console.log('user prueba', user);
+    });
   }
 }

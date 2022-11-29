@@ -3,35 +3,53 @@ import { UsersService } from 'src/app/services/users.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
+import { AlertsService } from 'src/app/services/alerts.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.page.html',
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage implements OnInit {
-  users!: user[];
+  users: user[] = [
+    {
+      id: '',
+      name: '',
+      birthday: '',
+      email: '',
+      image: '',
+    },
+  ];
   reqData = false;
   constructor(
     private usersService: UsersService,
-    private authService: AuthService,
-    private router: Router
+    private alertsSerice: AlertsService
   ) {}
 
   ngOnInit() {
-    this.verifySesion();
+    this.getUsers();
   }
   ionViewWillEnter() {
-    this.verifySesion();
+    this.getUsers();
   }
 
-  verifySesion() {
-    // if (this.authService.verifySesion()) {
+  getUsers() {
     this.usersService.getUsers().subscribe((users) => {
+      // console.log("djejdejen");
       this.users = users;
       this.reqData = true;
     });
-    /* } else {
-      this.router.navigate([`/login`]);
-    } */
+  }
+
+  beforePage() {
+    if (this.usersService.getPage() <= 1) {
+      this.alertsSerice.presentToast('top', 'You are on page 1');
+      return;
+    }
+    this.usersService.setPage('-');
+    this.getUsers();
+  }
+  nextPage() {
+    this.usersService.setPage('+');
+    this.getUsers();
   }
 }

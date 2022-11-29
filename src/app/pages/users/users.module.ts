@@ -7,14 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { UsersPageRoutingModule } from './users-routing.module';
 
 import { UsersPage } from './users.page';
+import { TableComponent } from 'src/app/components/table/table.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    UsersPageRoutingModule
-  ],
-  declarations: [UsersPage]
+  imports: [CommonModule, FormsModule, IonicModule, UsersPageRoutingModule],
+  declarations: [UsersPage, TableComponent],
 })
 export class UsersPageModule {}

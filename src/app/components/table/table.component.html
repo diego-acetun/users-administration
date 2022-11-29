@@ -1,0 +1,41 @@
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg my-6 mx-10 ">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th class="py-3 px-6">
+          Image
+        </th>
+        <th class="py-3 px-6">
+          name
+        </th>
+        <th class="py-3 px-6">
+          Fecha de nacimiento
+        </th>
+        <th class="py-3 px-6">
+          Correo electrónico
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:cursor-pointer"
+        *ngFor="let user of users" (click)="redirect(user.id)">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <ion-avatar>
+            <img src="{{user.image}}" alt="No disponible" class="max-h-20">
+          </ion-avatar>
+        </th>
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{user.name}}
+        </th>
+        <td class="py-4 px-6">
+          {{user.birthday}}
+        </td>
+        <td class="py-4 px-6">
+          {{user.email}}
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

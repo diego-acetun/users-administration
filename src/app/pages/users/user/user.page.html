@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="users"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="user">
+      <ion-avatar>
+        <img src="{{user.image}}" alt="not available" class="w-12">
+      </ion-avatar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="user" class="text-center">
+  <app-card [user]="user"></app-card>
+  <ion-button class="ion-margin-start" (click)="update()">Update</ion-button>
+  <ion-button class="ion-margin-start" color="danger" (click)="presentAlert()">Delete</ion-button>
+
+</ion-content>

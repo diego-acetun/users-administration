@@ -1,0 +1,61 @@
+<form class="mt-10" [formGroup]="form">
+  <ion-list>
+    <ion-item class="mb-5">
+      <ion-label>Name</ion-label>
+      <ion-input type="text" formControlName="name" name="name"></ion-input>
+    </ion-item>
+    <ion-item class="mb-5">
+      <ion-label>Birthday</ion-label>
+      <ion-input type="date" formControlName="birthday" name="birthday"></ion-input>
+    </ion-item>
+    <ion-item class="mb-5">
+      <ion-label>email</ion-label>
+      <ion-input type="text" formControlName="email" name="email"></ion-input>
+    </ion-item>
+    <ion-item class="mb-5" *ngIf="showInputPassword">
+      <ion-label>Password</ion-label>
+      <ion-input type="password" formControlName="password" name="password"></ion-input>
+    </ion-item>
+    <ion-item class="mb-5">
+      <ion-label>Image</ion-label>
+      <ion-input type="text" formControlName="image" name="image"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!-- <div class="w-1/2">
+    <div class="mb-6">
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">name</label>
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark dark:"
+        formControlName="name" />
+    </div>
+    <div class="mb-6">
+      <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de
+        nacimiento <br> dd/mm/yy</label>
+      <input type="date"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark dark:"
+        formControlName="birthday" />
+    </div>
+    <div class="mb-6">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electrónico</label>
+      <input type="email"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark dark:"
+        formControlName="email" placeholder="user@claro.com" />
+    </div>
+    <div class="mb-6">
+      <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark dark:"
+        formControlName="image" />
+    </div>
+    <div class="mb-6">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña <br />
+        Debe contener al menos una letra Mayúscula, 1 carácter especial (#$&@.),
+        1 número ser al menos de 6 dígitos</label>
+      <input type="password"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark dark:"
+        formControlName="password" />
+    </div>
+    <ng-content></ng-content>
+  </div> -->
+</form>

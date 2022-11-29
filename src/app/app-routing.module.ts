@@ -4,7 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -22,13 +22,20 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () =>
       import('./pages/users/users.module').then((m) => m.UsersPageModule),
-    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
+
   {
     path: '**',
     loadChildren: () =>
-      import('./pages/login/login.module').then((m) => m.LoginPageModule),
+      import('./not-found/not-found.module').then((m) => m.NotFoundPageModule),
   },
+
+  // {
+  //   path: '**',
+  //   loadChildren: () =>
+  //     import('./pages/login/login.module').then((m) => m.LoginPageModule),
+  // },
 ];
 
 @NgModule({
