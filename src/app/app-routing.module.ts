@@ -25,6 +25,12 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
   },
 
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./not-found/not-found.module').then((m) => m.NotFoundPageModule),
+  },
+
   // {
   //   path: '**',
   //   loadChildren: () =>

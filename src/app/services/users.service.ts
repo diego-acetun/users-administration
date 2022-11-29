@@ -47,7 +47,6 @@ export class UsersService {
             'top',
             `You are on page ${this.page}`
           );
-          console.log("jsjsj");
         }),
         catchError(this.handleError<any>('getUsuarios', []))
       );

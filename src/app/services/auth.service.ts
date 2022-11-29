@@ -15,7 +15,7 @@ import { AlertsService } from './alerts.service';
 export class AuthService {
   private url = 'https://crud-user.vercel.app/api/v1';
   public page = 1;
-  private authSubject!: BehaviorSubject<string>;
+  private authSubject!: BehaviorSubject<user>;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,13 +27,28 @@ export class AuthService {
     private router: Router,
     private alertsService: AlertsService
   ) {
-    const session: string = localStorage.getItem('user') || '{}';
-    this.authSubject = new BehaviorSubject<string>(session);
+    try {
+      const session: user = JSON.parse(
+        localStorage.getItem('user') ||
+          `{name:'', image:'', email:'', id:'', birthday:''}`
+      );
+      this.authSubject = new BehaviorSubject<user>(session);
+    } catch {
+      const session: user = {
+        name: '',
+        image: '',
+        email: '',
+        id: '',
+        birthday: '',
+      };
+      this.authSubject = new BehaviorSubject<user>(session);
+    }
   }
 
   setAuth(auth: user) {
     localStorage.setItem('user', JSON.stringify(auth));
-    this.authSubject.next(JSON.stringify(auth));
+    // this.authSubject.next(JSON.stringify(auth));
+    this.authSubject.next(auth);
   }
   getAuth() {
     // console.log('jj', typeof this.authSubject.value);
@@ -47,7 +62,13 @@ export class AuthService {
 
   logOut() {
     if (localStorage.getItem('user')) localStorage.removeItem('user');
-    this.authSubject.next('{}');
+    this.authSubject.next({
+      name: '',
+      image: '',
+      email: '',
+      id: '',
+      birthday: '',
+    });
   }
   login(credentials: login): Observable<user> {
     return this.http
@@ -61,16 +82,6 @@ export class AuthService {
       );
   }
 
-  // async invalidCredentials() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Login',
-  //     subHeader: 'Credenciales incorrectas',
-  //     message: 'Intentar de nuevo',
-  //     buttons: ['OK'],
-  //   });
-
-  //   await alert.present();
-  // }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

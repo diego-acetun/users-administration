@@ -31,10 +31,18 @@ export class FormUsersComponent implements OnInit {
       password: [
         this.user.password,
         [
-          Validators.required,
-          Validators.minLength(5),
-          Validations.validateSpecialCharacters,
-          Validations.validateSpecialCharacters,
+          this.showInputPassword
+            ? Validators.required
+            : Validators.nullValidator,
+          this.showInputPassword
+            ? Validators.minLength(6)
+            : Validators.nullValidator,
+          this.showInputPassword
+            ? Validations.validateSpecialCharacters
+            : Validators.nullValidator,
+          this.showInputPassword
+            ? Validations.validateSpecialCharacters
+            : Validators.nullValidator,
         ],
       ],
       image: [this.user.image, [Validators.required]],
