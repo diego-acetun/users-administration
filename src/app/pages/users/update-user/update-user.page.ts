@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 import { FormUsersComponent } from 'src/app/components/form-users/form-users.component';
+import { AlertsService } from 'src/app/services/alerts.service';
+
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.page.html',
@@ -21,7 +23,8 @@ export class UpdateUserPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UsersService
+    private userService: UsersService,
+    private alertsService: AlertsService
   ) {}
 
   ngOnInit() {
@@ -36,6 +39,14 @@ export class UpdateUserPage implements OnInit {
     });
   }
   update() {
+    if (this.form.form.invalid) {
+      this.alertsService.presentAlert(
+        'Invalid form',
+        'Some fields have not been filled correctly',
+        ''
+      );
+      return;
+    }
     this.user.name = this.form.form.value.name;
     this.user.email = this.form.form.value.email;
     this.user.birthday = this.form.form.value.birthday;

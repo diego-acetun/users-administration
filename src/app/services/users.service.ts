@@ -12,7 +12,7 @@ import { AlertsService } from './alerts.service';
 })
 export class UsersService {
   private url = 'https://crud-user.vercel.app/api/v1';
-  public page = 11;
+  private page = 11;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,12 +25,30 @@ export class UsersService {
     private alertsServices: AlertsService
   ) {}
 
+  getPage() {
+    return this.page;
+  }
+
+  setPage(operation: string) {
+    if (operation === '+') {
+      this.page += 1;
+    } else {
+      this.page -= 1;
+    }
+  }
+
   getUsers(): Observable<user[]> {
     return this.http
       .get<any>(`${this.url}/users?page=${this.page}&limit=50`)
       .pipe(
         map((users) => users.rows),
-        tap((users) => console.log('getUsers', users)),
+        tap((users) => {
+          this.alertsServices.presentToast(
+            'top',
+            `You are on page ${this.page}`
+          );
+          console.log("jsjsj");
+        }),
         catchError(this.handleError<any>('getUsuarios', []))
       );
   }

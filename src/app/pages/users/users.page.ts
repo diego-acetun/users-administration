@@ -3,6 +3,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
+import { AlertsService } from 'src/app/services/alerts.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.page.html',
@@ -19,7 +20,10 @@ export class UsersPage implements OnInit {
     },
   ];
   reqData = false;
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private alertsSerice: AlertsService
+  ) {}
 
   ngOnInit() {
     this.getUsers();
@@ -34,5 +38,18 @@ export class UsersPage implements OnInit {
       this.users = users;
       this.reqData = true;
     });
+  }
+
+  beforePage() {
+    if (this.usersService.getPage() <= 1) {
+      this.alertsSerice.presentToast('top', 'You are on page 1');
+      return;
+    }
+    this.usersService.setPage('-');
+    this.getUsers();
+  }
+  nextPage() {
+    this.usersService.setPage('+');
+    this.getUsers();
   }
 }

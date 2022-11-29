@@ -41,7 +41,7 @@ export class UserPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Alert!',
+      header: 'Are you sure you want to delete this user?',
       buttons: [
         {
           text: 'Cancel',

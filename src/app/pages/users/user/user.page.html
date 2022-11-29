@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="users"></ion-back-button>
+    </ion-buttons>
     <ion-title *ngIf="user">
       <ion-avatar>
         <img src="{{user.image}}" alt="not available" class="w-12">
