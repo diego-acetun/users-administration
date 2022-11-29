@@ -10,6 +10,7 @@ import { login } from 'src/app/interfaces/login.interface';
 export class LoginPage implements OnInit {
   username: string = '';
   password: string = '';
+  buttonDisabled: boolean = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
@@ -20,12 +21,14 @@ export class LoginPage implements OnInit {
 
   click(): void {
     // console.log('user:', this.username, 'pass:', this.password);
+    this.buttonDisabled = true;
     const credentials: login = {
       username: this.username,
       password: this.password,
     };
     this.authService.login(credentials).subscribe((user) => {
-      console.log('user prueba', user);
+      this.buttonDisabled = false;
+      // console.log('user prueba', user);
     });
   }
 }
