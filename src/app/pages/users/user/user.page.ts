@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-user',

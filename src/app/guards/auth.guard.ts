@@ -9,7 +9,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 @Injectable({
   providedIn: 'root',
 })

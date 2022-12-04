@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/services/users.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { UsersService } from 'src/app/services/users/users.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user.interface';
-import { AlertsService } from 'src/app/services/alerts.service';
+import { AlertsService } from 'src/app/services/alerts/alerts.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.page.html',
@@ -34,7 +34,7 @@ export class UsersPage implements OnInit {
 
   getUsers() {
     this.usersService.getUsers().subscribe((users) => {
-      // console.log("djejdejen");
+      console.log('djejdejen', users);
       this.users = users;
       this.reqData = true;
     });

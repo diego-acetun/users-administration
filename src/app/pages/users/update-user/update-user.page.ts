@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { user } from 'src/app/interfaces/user.interface';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 import { FormUsersComponent } from 'src/app/components/form-users/form-users.component';
-import { AlertsService } from 'src/app/services/alerts.service';
+import { AlertsService } from 'src/app/services/alerts/alerts.service';
 
 @Component({
   selector: 'app-update-user',

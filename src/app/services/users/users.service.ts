@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, ignoreElements, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
-import { user } from '../interfaces/user.interface';
-import { login } from '../interfaces/login.interface';
-import { AlertsService } from './alerts.service';
+import { environment } from 'src/environments/environment';
+import { user } from '../../interfaces/user.interface';
+// import { login } from '../interfaces/login.interface';
+import { AlertsService } from '../alerts/alerts.service';
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private url = 'https://crud-user.vercel.app/api/v1';
+  private url = environment.api;
   private page = 11;
   httpOptions = {
     headers: new HttpHeaders({
@@ -123,8 +123,14 @@ export class UsersService {
       console.log(`${operation} failed: ${error.message}`);
       if (operation === 'loginError') {
         console.log('credenciales incorrectas');
+        return of(result as T);
       }
 
+      this.alertsServices.presentAlert(
+        'Error',
+        `Error Interno ${operation}`,
+        ''
+      );
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

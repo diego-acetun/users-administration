@@ -4,10 +4,10 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, ignoreElements, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { user } from '../interfaces/user.interface';
-import { login } from '../interfaces/login.interface';
+import { user } from '../../interfaces/user.interface';
+import { login } from '../../interfaces/login.interface';
 // import { AlertController } from '@ionic/angular';
-import { AlertsService } from './alerts.service';
+import { AlertsService } from '../alerts/alerts.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormUsersComponent } from 'src/app/components/form-users/form-users.component';
 import { user } from 'src/app/interfaces/user.interface';
-import { UsersService } from 'src/app/services/users.service';
-import { AlertsService } from 'src/app/services/alerts.service';
+import { UsersService } from 'src/app/services/users/users.service';
+import { AlertsService } from 'src/app/services/alerts/alerts.service';
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.page.html',
