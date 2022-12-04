@@ -13,8 +13,7 @@ Esta aplicación permite gestionar usuarios (CRUD de usuarios)
 ## Environment Variables
 
 Para ejecutar el proyecto es necesario que se agreguen las
-siguientes Variables de entorno a
-[users-administration/src/environments/](https://github.com/diego-acetun/users-administration/tree/main/src/environments)
+siguientes Variables de entorno al fichero enviroment.ts
 
 `API`
 
