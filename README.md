@@ -10,6 +10,14 @@ Esta aplicación permite gestionar usuarios (CRUD de usuarios)
 
 - Instalar [Ionic Cli](https://ionicframework.com/)
 
+## Environment Variables
+
+Para ejecutar el proyecto es necesario que se agreguen las
+siguientes Variables de entorno a
+[users-administration/src/environments/](https://github.com/diego-acetun/users-administration/tree/main/src/environments)
+
+`API`
+
 ## Ejecutar localmente
 
 Clonar el proyecto
